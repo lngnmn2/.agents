@@ -31,9 +31,15 @@ Always use Ocaml modules and Functors instead of the OOP syntax and features.
 
 ## The strict explicit rules to follow
 
+- Always use `option` or `result` when an absence of a value or an error
+  condition is possible by an interface specification and is expected.
+- No exceptions, except when cannot return a meaningful value according to the
+  interface specification.
 - No mutable data in principle.
 - No imperative constructs in principle.
 - No OOP syntax or features in principle.
+- No GADTs, except when implementing the Interpreter pattern (of an Initial
+  Algebra).
 
 ## Embrace Gentzen's Natural Deduction
 
