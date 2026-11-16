@@ -19,11 +19,57 @@ mechanisms the OOP-specific inheritance does.
 
 Always use Ocaml modules and Functors instead of the OOP syntax and features.
 
+## Abstract Interfaces as required Capabilities
+
+- A signature describes a required capability (an Abstract Interface).
+- A functor accepts any module satisfying that signature (Abstraction By
+  Parameterization).
+- The functor produces a new implementation (a new structure with parameterized
+  code).
+- The output signature determines which type relationships and operations
+  clients can observe.
+
 ## The strict explicit rules to follow
 
 - No mutable data in principle.
 - No imperative constructs in principle.
 - No OOP syntax or features in principle.
+
+## Embrace Gentzen's Natural Deduction
+
+Every Introduction (via a particular data-constructor) has to be, eventually,
+followed by an Elimination (via pattern-matching expression).
+
+This structural pattern is not arbitrary -- it preserves and validates the
+implicit DAG of "nested (composed) arrows", which actually define the process
+that a program only encodes.
+
+## The sum-types are the most fundamental
+
+Algebraic Sum-types (a.k.a Ocaml's variants) represent a distinct set of
+possibilities -- possible expected states, possible expected inputs, possible
+expected outcomes, etc.
+
+Variant types, exhaustive pattern-matching and the `= function` syntactic form
+constitute a perfect standard idiom to capture and express possibilities.
+
+Systematically and consistently define and use variant types and `= function`
+syntax everywhere, explicitly avoiding booleans, and even the `if` expressions
+in favour of functions defined by clauses (pattern-matching on its last implicit
+argument). This rule is mandatory and must be strictly enforced.
+
+## Use Curried function and Partial Application
+
+Explicitly designs a parameter list of every function to be conveniently
+partially applied on its first argument and pattern-matched on its last
+argument, exactly the way the classic `map` or `filter` has been defined.
+
+Use named arguments only in the cases like `~f` or in the case when explicitly
+naming a Domain Concept clarifies the behavior, just as in `map` or when a
+"Context" or "State" is going to be explicitly passed around.
+
+Strictly follow the standard idioms from the Ocaml's Standard Library and the
+Ocaml Reference Guide.
 
 ## Use the Tagless Final pattern
 
