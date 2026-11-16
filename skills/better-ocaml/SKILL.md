@@ -119,3 +119,41 @@ right level of abstraction.
 - Always consider to design a module to be parameterized by another type.
 - Strictly follow the standard idioms from the Ocaml Standard Library while
   designing signatures and structures.
+
+## The Design discipline to be systematically followed
+
+1. Model the domain algebraically.
+
+   Use products for combinations of facts, variants for alternatives, and
+   recursive algebraic data types for recursive structures. Make the valid cases
+   explicit in the type definition.
+
+1. Compute by following the structure of the data.
+
+   Use pattern matching and structural recursion. Let the compiler check whether
+   the cases are covered, instead of scattering runtime tests and casts
+   throughout the code.
+
+1. Parameterize at the right level.
+
+   Use functions to abstract over values, parameterized types to abstract over
+   types, and functors or module-dependent functions to abstract over module
+   capabilities and implementations.
+
+1. Treat type signatures as enforceable contracts.
+
+   Use abstract types when callers must not depend on a representation. Export
+   type equalities deliberately when they are necessary, and keep implementation
+   details behind the interface.
+
+1. Variants and pattern-matching at the center.
+
+   Systematically and consistently use Algebraic Sum-types (variants) to encode
+   possible and expected outcomes, conditions, states, error conditions. Use the
+   `= function` pattern and design short functions defined by clauses.
+
+1. Use advanced generality only when the problem calls for it.
+
+   Start with ordinary variants, records, functions, and signatures. Reach for
+   GADTs, polymorphic variants, higher-rank polymorphism, or effect handlers
+   when they express a real domain requirement more clearly.
